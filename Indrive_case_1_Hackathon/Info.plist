@@ -2,8 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict/>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+        <key>NSCameraUsageDescription</key>
+        <string>Приложение использует камеру для фотографирования автомобиля</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>Приложение использует галерею для выбора фотографий автомобиля</string>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
