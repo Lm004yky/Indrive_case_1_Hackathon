@@ -42,7 +42,7 @@ class NetworkManager {
                     )
                     
                     guard 200...299 ~= httpResponse.statusCode else {
-                        completion(.failure(.serverError(httpResponse.statusCode)))
+                        completion(.failure(.serverError("HTTP \(httpResponse.statusCode)")))
                         return
                     }
                     
@@ -79,5 +79,30 @@ class NetworkManager {
         }
         
         return request
+    }
+    
+    private func buildMultipartBody(multipartData: [MultipartFormData], boundary: String) -> Data {
+        var body = Data()
+        
+        for data in multipartData {
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            
+            if let fileName = data.fileName {
+                body.append("Content-Disposition: form-data; name=\"\(data.name)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+            } else {
+                body.append("Content-Disposition: form-data; name=\"\(data.name)\"\r\n".data(using: .utf8)!)
+            }
+            
+            if let mimeType = data.mimeType {
+                body.append("Content-Type: \(mimeType)\r\n".data(using: .utf8)!)
+            }
+            
+            body.append("\r\n".data(using: .utf8)!)
+            body.append(data.data)
+            body.append("\r\n".data(using: .utf8)!)
+        }
+        
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        return body
     }
 }

@@ -17,12 +17,15 @@ class MainInteractor: MainInteractorProtocol {
     
     func fetchApplications() {
         networkService.getApplications { [weak self] result in
-            switch result {
-            case .success(let response):
-                self?.presenter?.applicationsFetched(response.results)
-            case .failure(let error):
-                self?.presenter?.applicationsFetchFailed(with: error)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self?.presenter?.applicationsFetched(response.results)
+                case .failure(let error):
+                    self?.presenter?.applicationsFetchFailed(with: error)
+                }
             }
         }
     }
+
 }

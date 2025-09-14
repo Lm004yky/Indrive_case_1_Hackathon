@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E70227B82E76B6E2003A1319 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E70227B72E76B6E2003A1319 /* SnapKit */; };
+		E702287E2E771231003A1319 /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = E702287D2E771231003A1319 /* netfox */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E702287E2E771231003A1319 /* netfox in Frameworks */,
 				E70227B82E76B6E2003A1319 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = Indrive_case_1_Hackathon;
 			packageProductDependencies = (
 				E70227B72E76B6E2003A1319 /* SnapKit */,
+				E702287D2E771231003A1319 /* netfox */,
 			);
 			productName = Indrive_case_1_Hackathon;
 			productReference = E73E39332E7556090089A4A3 /* Indrive_case_1_Hackathon.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				E70227B62E76B6E2003A1319 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E702287C2E771231003A1319 /* XCRemoteSwiftPackageReference "netfox" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E73E39342E7556090089A4A3 /* Products */;
@@ -364,6 +368,14 @@
 				version = 5.7.1;
 			};
 		};
+		E702287C2E771231003A1319 /* XCRemoteSwiftPackageReference "netfox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kasketis/netfox.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.21.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -371,6 +383,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E70227B62E76B6E2003A1319 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		E702287D2E771231003A1319 /* netfox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E702287C2E771231003A1319 /* XCRemoteSwiftPackageReference "netfox" */;
+			productName = netfox;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

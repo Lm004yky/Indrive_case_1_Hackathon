@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-// MARK: - Application Models
+// MARK: - API Response Models
 struct ApplicationResponse: Codable {
     let previous: String?
     let next: String?
@@ -25,6 +26,7 @@ struct ApplicationResponse: Codable {
     }
 }
 
+// MARK: - Application Model
 struct Application: Codable {
     let id: Int
     let iin: String
@@ -40,8 +42,9 @@ struct Application: Codable {
     }
 }
 
+// MARK: - License Model
 struct License: Codable {
-    let id: Int?
+    let id: Int
     let validatedIin: String?
     let validatedName: String?
     let validatedSurname: String?
@@ -54,10 +57,11 @@ struct License: Codable {
     }
 }
 
+// MARK: - Car Photo Model
 struct CarPhoto: Codable {
-    let id: Int?
-    let image: String?
-    let problems: Bool?
+    let id: Int
+    let image: String
+    let problems: Bool
     let problemList: String?
     
     enum CodingKeys: String, CodingKey {
@@ -66,16 +70,11 @@ struct CarPhoto: Codable {
     }
 }
 
-// MARK: - Create Application Request
-struct CreateApplicationRequest: Codable {
+// MARK: - Create Application Request Model
+struct CreateApplicationRequest {
     let iin: String
     let name: String
     let surname: String
-    let carPhotos: [CarPhoto]
-    let license: License
-    
-    enum CodingKeys: String, CodingKey {
-        case iin, name, surname, license
-        case carPhotos = "car_photos"
-    }
+    let carPhotos: [UIImage]
+    let licenseImage: UIImage?
 }

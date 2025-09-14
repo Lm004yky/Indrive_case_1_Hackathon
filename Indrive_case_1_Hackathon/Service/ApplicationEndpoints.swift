@@ -15,7 +15,7 @@ enum ApplicationEndpoints {
 
 extension ApplicationEndpoints: TargetType {
     var baseURL: URL {
-        URL(string: "https://91a784fe7f0a.ngrok-free.app")!
+        URL(string: "https://4f81bf9a10f9.ngrok-free.app")!
     }
     
     var path: String {
@@ -43,7 +43,7 @@ extension ApplicationEndpoints: TargetType {
         case .getApplications, .getApplication:
             return .requestPlain
         case .createApplication(let request):
-            return .requestJSONEncodable(request)
+            return .requestJSONEncodable(request as! Encodable)
         }
     }
     

@@ -13,6 +13,7 @@ class CreateApplicationPresenter: CreateApplicationPresenterProtocol {
     var router: CreateApplicationRouterProtocol?
     
     private var capturedPhotos: [UIImage] = []
+    private var licensePhoto: UIImage?
     
     func viewDidLoad() {
         view?.updatePhotoCount(capturedPhotos.count)
@@ -29,9 +30,27 @@ class CreateApplicationPresenter: CreateApplicationPresenterProtocol {
         view?.updatePhotoCount(capturedPhotos.count)
     }
     
+    func addLicensePhoto(_ image: UIImage) {
+        licensePhoto = image
+    }
+    
+    func removeLicensePhoto() {
+        licensePhoto = nil
+    }
+    
     func submitApplication(iin: String, name: String, surname: String) {
         guard !iin.isEmpty, !name.isEmpty, !surname.isEmpty else {
             view?.showError("Пожалуйста, заполните все поля")
+            return
+        }
+        
+        guard iin.count == 12 else {
+            view?.showError("ИИН должен содержать 12 цифр")
+            return
+        }
+        
+        guard let licenseImage = licensePhoto else {
+            view?.showError("Необходимо добавить фото водительского удостоверения")
             return
         }
         
@@ -40,19 +59,12 @@ class CreateApplicationPresenter: CreateApplicationPresenterProtocol {
             return
         }
         
-        // Convert images to CarPhoto objects (for MVP, we'll use placeholder URLs)
-        let carPhotos = capturedPhotos.enumerated().map { index, _ in
-            CarPhoto(id: nil, image: "placeholder_\(index).jpg", problems: nil, problemList: nil)
-        }
-        
-        let license = License(id: nil, validatedIin: nil, validatedName: nil, validatedSurname: nil)
-        
         let request = CreateApplicationRequest(
             iin: iin,
             name: name,
             surname: surname,
-            carPhotos: carPhotos,
-            license: license
+            carPhotos: capturedPhotos,
+            licenseImage: licenseImage
         )
         
         view?.showLoading()

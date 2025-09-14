@@ -15,7 +15,7 @@ enum UserMode: Int, CaseIterable {
     var title: String {
         switch self {
         case .driver:
-            return "Драйвер"
+            return "Водитель"
         case .moderator:
             return "Модератор"
         }
@@ -180,7 +180,7 @@ class MainViewController: UIViewController {
         case .driver:
             driverModeContainer.isHidden = false
             tableView.isHidden = true
-            title = "FairDeal - Драйвер"
+            title = "FairDeal - Водитель"
         case .moderator:
             driverModeContainer.isHidden = true
             tableView.isHidden = false

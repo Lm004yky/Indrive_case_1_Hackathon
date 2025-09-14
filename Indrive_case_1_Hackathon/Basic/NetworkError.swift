@@ -8,16 +8,19 @@
 import Foundation
 
 public enum NetworkError: Error, LocalizedError {
+    case networkError(Error)
     case invalidURL
     case invalidResponse
     case noData
-    case serverError(Int)
+    case serverError(String)
     case decodingError(Error)
     case encodingError(Error)
     case moyaError(MoyaError)
     
     public var errorDescription: String? {
         switch self {
+        case .networkError(let error):
+            return "Ошибка сети: \(error.localizedDescription)"
         case .invalidURL:
             return "Invalid URL"
         case .invalidResponse:

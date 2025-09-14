@@ -25,6 +25,8 @@ protocol CreateApplicationPresenterProtocol: AnyObject {
     func viewDidLoad()
     func addPhoto(_ image: UIImage)
     func removePhoto(at index: Int)
+    func addLicensePhoto(_ image: UIImage)
+    func removeLicensePhoto()
     func submitApplication(iin: String, name: String, surname: String)
 }
 
